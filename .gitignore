@@ -4,5 +4,3 @@ __pycache__/
 .DS_Store
 db.sqlite3
 
-# 실제 OTA 바이너리는 크거나 민감할 수 있으므로 필요할 때만 Git에 포함하세요.
-ota_files/**/*.bin

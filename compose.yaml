@@ -10,6 +10,6 @@ services:
       DJANGO_ALLOWED_HOSTS: "*"
       DJANGO_SECRET_KEY: "change-this-secret-key"
       OTA_FILE_ROOT: "/app/ota_files"
-      OTA_DOWNLOAD_MAP: '{"ml":"ml/firmware.bin"}'
+      OTA_DOWNLOAD_MAP: '{"ml":"ml/C3_EasyIoT_M3_L3_OTA.bin"}'
     volumes:
-      - ./ota_files:/app/ota_files:ro
+      - ${HOST_OTA_FILE_ROOT:-./ota_files}:/app/ota_files:ro

@@ -23,7 +23,7 @@ def env_list(name, default):
 
 
 def load_ota_download_map():
-    raw_map = os.getenv("OTA_DOWNLOAD_MAP", '{"ml":"ml/firmware.bin"}')
+    raw_map = os.getenv("OTA_DOWNLOAD_MAP", '{"ml":"ml/C3_EasyIoT_M3_L3_OTA.bin"}')
     try:
         parsed = json.loads(raw_map)
     except json.JSONDecodeError as exc:

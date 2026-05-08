@@ -66,13 +66,21 @@ Docker Compose를 쓰는 경우:
 docker compose up -d --build
 ```
 
+EC2에서 호스트의 실제 OTA 폴더가 `/home/ec2-user/ota_was/ota_files`라면:
+
+```bash
+HOST_OTA_FILE_ROOT=/home/ec2-user/ota_was/ota_files docker compose up -d --build
+```
+
+중요: Docker 컨테이너 안에서는 EC2 호스트 경로가 그대로 보이지 않습니다. 위 설정은 EC2의 `/home/ec2-user/ota_was/ota_files`를 컨테이너 내부 `/app/ota_files`로 마운트하고, Django는 컨테이너 내부 경로인 `/app/ota_files`를 읽습니다.
+
 ## AWS EC2 배포 메모
 
 1. EC2 보안 그룹에서 요청하는 서버의 IP에 대해 TCP `80` 포트를 허용합니다.
 2. EC2에 Docker와 Docker Compose를 설치합니다.
 3. 이 프로젝트를 EC2에 복사하고 `ota_files/ml/firmware.bin`에 실제 OTA 파일을 배치합니다.
 4. `compose.yaml`의 `DJANGO_SECRET_KEY`, `OTA_DOWNLOAD_MAP`을 운영 값으로 변경합니다.
-5. `docker compose up -d --build`로 실행합니다.
+5. `HOST_OTA_FILE_ROOT=/home/ec2-user/ota_was/ota_files docker compose up -d --build`로 실행합니다.
 
 요청 예시:
 
